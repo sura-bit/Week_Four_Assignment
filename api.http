@@ -44,7 +44,7 @@ Content-Type: application/json
 
 {
   "name": "Meeting Room",
-  "capacity": 10
+  "capacity": 2
 }
 
 ###
@@ -55,7 +55,7 @@ Content-Type: application/json
 
 {
   "name": "Updated Seminar A",
-  "capacity": 15
+  "capacity": 0
 }
 
 ###

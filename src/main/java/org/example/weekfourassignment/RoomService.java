@@ -51,6 +51,9 @@ public class RoomService {
     }
 
     public Room create(String name, int capacity) {
+
+        checkCapacity(capacity);
+
         return roomRepository.save(
                 new Room(null, name, capacity)
         );
@@ -61,6 +64,8 @@ public class RoomService {
             String name,
             int capacity) {
 
+        checkCapacity(capacity);
+
         return roomRepository.findById(id)
                 .map(existing -> roomRepository.save(
                         new Room(id, name, capacity)
@@ -70,4 +75,13 @@ public class RoomService {
     public boolean delete(Long id) {
         return roomRepository.deleteById(id);
     }
+
+    public void checkCapacity(int capacity) {
+        if (capacity < 1 || capacity > 20) {
+            throw new IllegalArgumentException(
+                    "Capacity must be between 1 and 20"
+            );
+        }
+    }
+
 }

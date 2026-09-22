@@ -42,14 +42,18 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<Room> create(@RequestBody Room room) {
 
-        Room newRoom = roomService.create(
-                room.name(),
-                room.capacity()
-        );
+        try {
+            Room newRoom = roomService.create(
+                    room.name(),
+                    room.capacity()
+            );
 
-        return ResponseEntity
-                .created(URI.create("/api/rooms/" + newRoom.id()))
-                .body(newRoom);
+            return ResponseEntity
+                    .created(URI.create("/api/rooms/" + newRoom.id()))
+                    .body(newRoom);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     // PUT /api/rooms/{id}
@@ -58,13 +62,17 @@ public class RoomController {
             @PathVariable Long id,
             @RequestBody Room room) {
 
-        return roomService.update(
-                        id,
-                        room.name(),
-                        room.capacity()
-                )
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            return roomService.update(
+                            id,
+                            room.name(),
+                            room.capacity()
+                    )
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     // DELETE /api/rooms/{id}
