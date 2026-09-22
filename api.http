@@ -1,0 +1,69 @@
+### Get all rooms
+GET http://localhost:8080/api/rooms
+
+###
+
+### Get room with given minimum capacity
+GET http://localhost:8080/api/rooms?minCapacity=6
+
+###
+
+### Get room with matching keyword
+GET http://localhost:8080/api/rooms?keyword=pod
+
+###
+
+### Get room with matching keyword and given minimum capacity
+GET http://localhost:8080/api/rooms?minCapacity=6&keyword=roof
+
+###
+
+### Get room by ID
+GET http://localhost:8080/api/rooms/2
+
+###
+
+### Get non-existing room
+GET http://localhost:8080/api/rooms/99
+
+###
+
+### Sort by capacity
+GET http://localhost:8080/api/rooms?sort=capacity
+
+###
+
+### Sort by name
+GET http://localhost:8080/api/rooms?sort=name
+
+##
+
+### Create room
+POST http://localhost:8080/api/rooms
+Content-Type: application/json
+
+{
+  "name": "Meeting Room",
+  "capacity": 10
+}
+
+###
+
+### Update room
+PUT http://localhost:8080/api/rooms/1
+Content-Type: application/json
+
+{
+  "name": "Updated Seminar A",
+  "capacity": 15
+}
+
+###
+
+### Delete room
+DELETE http://localhost:8080/api/rooms/2
+
+###
+
+### Delete non-existing room
+DELETE http://localhost:8080/api/rooms/99
